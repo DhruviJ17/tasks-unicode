@@ -36,6 +36,7 @@ def queryuser(request):
         form = parsedData(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
+            form.save()
             return Query(request, username)
     context = {'form': form}
     return render(request, 'acc/user.html', context)
@@ -73,6 +74,45 @@ def Query(request, username):
 
     context = {'names': name_list, 'followers': followers_list}
     return render(request, 'acc/apiquery.html', context)
+
+def repoQuery(request):
+    form = RepoData()
+    result = None
+    if request.method == 'POST':
+        form = RepoData(request.POST)
+        if form.is_valid():
+            repo_count = form.cleaned_data['repo_count']
+            result = ApiQuery.objects.filter(repo_count=repo_count)
+            for x in result:
+                x.count += 1
+                x.save()
+
+    context = {'form': form, 'result': result}
+    return render(request, 'acc/repo.html', context)
+
+def foloQuery(request):
+    form = FoloData()
+    result = None
+    if request.method == 'POST':
+        form = FoloData(request.POST)
+        if form.is_valid():
+            followers_count = form.cleaned_data['followers_count']
+            result = ApiQuery.objects.filter(followers_count=followers_count)
+            for x in result:
+                x.count += 1
+                x.save()
+
+    context = {'form': form, 'result': result}
+    return render(request, 'acc/folo.html', context)
+
+
+def topthree(request):
+    answer = ApiQuery.objects.order_by('count')[:3]
+    context = {'answer': answer}
+    return render(request, 'acc/top.html', context)
+
+
+
 
 
 

@@ -1,0 +1,11 @@
+{% extends 'acc/main.html' %}
+
+{% block content %}
+<form action="{% url 'topthree' %}" method="post">
+    {% csrf_token %}
+    {{answer}}
+</form>
+
+<a href="{% url 'home' %}">goto home</a>
+
+{% endblock %}

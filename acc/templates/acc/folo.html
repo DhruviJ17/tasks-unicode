@@ -1,0 +1,13 @@
+{% extends 'acc/main.html' %}
+
+{% block content %}
+<form action="{% url 'folo' %}" method="post">
+    {% csrf_token %}
+    enter repo_count : {{form}}
+
+<input type="submit" value="Submit"><br>
+<output class="result">{{result}}</output><br>
+</form>
+<a href="{% url 'home' %}">goto home</a>
+
+{% endblock %}
