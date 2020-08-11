@@ -1,0 +1,12 @@
+{% extends 'acc/main.html' %}
+
+{% block content %}
+
+<form class="result" method="POST">
+    {% csrf_token %}
+    {{dict}}<br>
+
+    <a href="{% url 'home' %}">Back to Home</a>
+</form>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'acc/main.html' %}
+
+{% block content %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    <table>{{form}}</table>
+    <input type="submit" value="Submit"/>
+    <a href="{% url 'home' %}">Back to Home</a>
+</form>
+
+{% endblock %}
