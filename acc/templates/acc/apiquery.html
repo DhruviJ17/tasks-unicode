@@ -1,0 +1,12 @@
+{% extends 'acc/main.html' %}
+
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    names : {{names}}<br>
+    followers : {{followers}}
+</form>
+
+<a href="{% url 'home' %}">goto home</a>
+
+{% endblock %}
