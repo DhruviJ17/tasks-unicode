@@ -6,7 +6,11 @@
     enter repo_count : {{form}}
 
 <input type="submit" value="Submit"><br>
-<output class="result">{{result}}</output><br>
+<output class="result">
+    {% for re in result %}
+    username : {{re}}<br>
+    {% endfor %}
+</output><br>
 </form>
 <a href="{% url 'home' %}">goto home</a>
 

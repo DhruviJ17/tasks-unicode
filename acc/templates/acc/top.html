@@ -3,7 +3,9 @@
 {% block content %}
 <form action="{% url 'topthree' %}" method="post">
     {% csrf_token %}
-    {{answer}}
+    {% for ans in answer %}
+    username : {{ans}}<br>
+    {% endfor %}
 </form>
 
 <a href="{% url 'home' %}">goto home</a>
